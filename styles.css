@@ -16,7 +16,7 @@
 
 /* SECTION 1: WELCOME SCREEN */
 #welcomeScreen {
-    background-image: url("./images/resto-entrance.jpg");
+    background-image: url("./images/bar.jpg");
     background-size: cover;
     height: 100vh;
     display: flex; 

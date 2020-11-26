@@ -16,13 +16,17 @@ const responseDiv = document.getElementById("response")
 const response = document.getElementById("responseText")
 const newPromptBtn = document.getElementById("newPrompt")
 const timer = document.getElementById("timer")
+const score = document.getElementById("score")
 let allDataCells // DOM selector for all data cells in menuItems table
 let allChoiceCells // DOM selector for all data cells in playerChoice table
 let htmlAllMenuItems = allMenuItems
 let playerChoices = []
 let selectedPrompt // gets filled in with a random prompt with printPrompt function
+let currentScore = 10  
 
 loadMenuItems(htmlAllMenuItems);
+
+
 
 
 // ********************************************************************************
@@ -32,6 +36,10 @@ loadMenuItems(htmlAllMenuItems);
 function initWelcomeScreen() {welcomeScreen.style.display = "flex"}
 function initPlayScreen() {
     playScreen.style.display = "none"
+}
+function resetScore() {
+    currentScore = 10;
+    score.textContent = `Score: ${currentScore}`
 }
 
 //For moving on to play the game 
@@ -131,56 +139,48 @@ function isVegetarian() {
         let isVegetarian = []
         playerChoices.forEach(item =>  isVegetarian.push(item.vegetarian) )
         let isTrue = isVegetarian.every((el) => el === true)
-        console.log(`all selected items are vegetarian: ${isTrue}`)
         return isTrue;
 }
 function containsNoFish() {
         let noFish = []
         playerChoices.forEach(item =>  noFish.push(item.noFish) )
         let isTrue = noFish.every((el) => el === true)
-        console.log(`all selected items are fish-free: ${isTrue}`)
         return isTrue
 }
 function containsNoShrimp() {
         let noShrimp = []
         playerChoices.forEach(item =>  noShrimp.push(item.noShrimp) )
         let isTrue = noShrimp.every((el) => el === true)
-        console.log(`all selected items are shrimp-free: ${isTrue}`)
         return isTrue
 }
 function containsNoCheese() {
         let noCheese = []
         playerChoices.forEach(item =>  noCheese.push(item.noCheese) )
         let isTrue = noCheese.every((el) => el === true)
-        console.log(`all selected items are cheese-free: ${isTrue}`)
         return isTrue
 }
 function containsNoLactose() {
         let noLactose = []
         playerChoices.forEach(item =>  noLactose.push(item.noMilk) )
         let isTrue = noLactose.every((el) => el === true)
-        console.log(`all selected items are lactose-free: ${isTrue}`)
         return isTrue  
 }
 function isHalal() {
         let isHalal = []
         playerChoices.forEach(item =>  isHalal.push(item.halal) )
         let isTrue = isHalal.every((el) => el === true)
-        console.log(`all selected items are halal: ${isTrue}`)
         return isTrue
 }
 function isKosher() {
         let isKosher = []
         playerChoices.forEach(item =>  isKosher.push(item.kosher) )
         let isTrue = isKosher.every((el) => el === true)
-        console.log(`all selected items are kosher: ${isTrue}`)
         return isTrue
 }
 function isGlutenFree() {
         let isGlutenFree = []
         playerChoices.forEach(item =>  isGlutenFree.push(item.glutenFree) )
         let isTrue = isGlutenFree.every((el) => el === true)
-        console.log(`all selected items are GF: ${isTrue}`)
         return isTrue
 }
 function isLighter() {
@@ -189,28 +189,24 @@ function isLighter() {
         let averageRichness = isLighter.reduce((acc,num) => acc + num) / isLighter.length
         let isTrue
         if (averageRichness <= 3) {isTrue = true} else {isTrue = false}
-        console.log(`average of selected items is light: ${isTrue}`)
         return isTrue
 }
 function containsNoAlcohol() {
         let noAlcohol = []
         playerChoices.forEach(item =>  noAlcohol.push(item.noBooze) )
         let isTrue = noAlcohol.every((el) => el === true)
-        console.log(`all selected items are alcohol-free: ${isTrue}`)
         return isTrue
 }
 function containsNoRaw() {
         let noRaw = []
         playerChoices.forEach(item =>  noRaw.push(item.noRaw) )
         let isTrue = noRaw.every((el) => el === true)
-        console.log(`all selected items are cooked: ${isTrue}`)
         return isTrue
 }
 function okForPregnancy() {
         let noAlcohol = containsNoAlcohol()
         let noRaw = containsNoRaw()
         const isTrue = noAlcohol && noRaw
-        console.log(`all selected items are pregnancy-friendly: ${isTrue}`)
         return isTrue
 }
 
@@ -243,10 +239,12 @@ function isCriteriaFulfilled(object) {
     }
     return trueOrFalse
 }
-
-
 function printResult(boolean) {
     response.textContent = selectedPrompt.response(boolean)
+}
+function changeScore(boolean) {
+    boolean ? currentScore += 4 : currentScore -= 4
+    score.textContent = `Score: ${currentScore}`    
 }
 
 // for selecting a new prompt
@@ -291,6 +289,7 @@ startBtn.onclick = () => {
     showPlayScreen();
     printPrompt(allPrompts); 
     hideResponseSection()
+    resetScore()
 }
 
 sortDownBtnName.onclick = () => {
@@ -317,6 +316,7 @@ submitBtn.onclick = () => {
         makeNewPromptButtonAppear()
         printResult(isCriteriaFulfilled(selectedPrompt)) 
         showResponseSection()
+        changeScore(isCriteriaFulfilled(selectedPrompt))
     }
 }
 
