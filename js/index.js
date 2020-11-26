@@ -25,14 +25,6 @@ let selectedPrompt // gets filled in with a random prompt with printPrompt funct
 loadMenuItems(htmlAllMenuItems);
 
 
-// let countdown = setInterval(function() {
-//     seconds -- ;
-//     timer.textContent = `Time : ${seconds}`
-//     if (seconds <= 0) clearInterval(countdown);
-// }, 1000);
-
-
-
 // ********************************************************************************
 // // // FUNCTIONS
 
@@ -47,6 +39,7 @@ function hideWelcomeScreen() {welcomeScreen.style.display = "none"}
 function showPlayScreen() {
     playScreen.style.display = "grid"
 }
+
 function getRandomInteger(number) {
   return Math.floor(Math.random() * Math.floor(number));
 }
@@ -273,6 +266,12 @@ function sortItemsByAscPrice(array) {
     return array;
 }
 
+function makeSubmitButtonAppear() {submitBtn.style.display = "block"}
+function makeSubmitButtonDisappear() {submitBtn.style.display = "none"}
+
+function makeNewPromptButtonAppear() {newPromptBtn.style.display = "block"}
+function makeNewPromptButtonDisppear() {newPromptBtn.style.display = "none"}
+
 // shuffle menu items? 
 // filter menu items 
 
@@ -283,7 +282,7 @@ function sortItemsByAscPrice(array) {
 // INITIALIZE WELCOME SCREEN
 window.onload = () => {
     initWelcomeScreen();
-    initPlayScreen;
+    initPlayScreen();
 }
 
 // MOVE TO PLAY SCREEN
@@ -291,8 +290,7 @@ startBtn.onclick = () => {
     hideWelcomeScreen();
     showPlayScreen();
     printPrompt(allPrompts); 
-    hideResponseSection()   
-    // shuffle the menu items ?
+    hideResponseSection()
 }
 
 sortDownBtnName.onclick = () => {
@@ -315,6 +313,8 @@ submitBtn.onclick = () => {
     if (playerChoices.length < 2) {
         alert("Please select at least two choices!") ;       
     } else {
+        makeSubmitButtonDisappear()
+        makeNewPromptButtonAppear()
         printResult(isCriteriaFulfilled(selectedPrompt)) 
         showResponseSection()
     }
@@ -327,6 +327,8 @@ newPromptBtn.onclick = () => {
     loadMenuItems(htmlAllMenuItems);
     renderPlayerChoicesTable(playerChoices)
     response.textContent = "";
-    hideResponseSection()  
+    hideResponseSection()
+    makeSubmitButtonAppear()
+    makeNewPromptButtonDisppear()
 }
 

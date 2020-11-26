@@ -12,7 +12,10 @@
 <body>
 <!-- SECTION 1: WELCOME SCREEN -->
     <section id="welcomeScreen">
-        <h1>Menu Generator Game</h1>
+        <header>
+            <h1 id="waiter">WAITER!</h1>
+            <h1 id="subtitle">The Menu Generator Game</h1>
+        </header>
         <p>You’re a waiter in a busy restaurant that offers a lot of choices. 
             Help your customer choose the menu that is best suited for them</p>
         <button id="start">Start Playing</button>
@@ -28,17 +31,13 @@
 
     <!-- SECTION 2b: TIMER AND SCORE -->
     <section id="timerSection">
-        <h2 id="timer">Time:00</h2>
-        <h2>Score:00 </h2>
+        <!-- <h2 id="timer">Time: 15</h2> -->
+        <h2 id="score">Score: 0 </h2>
     </section>
 
     <!-- SECTION 2c: MENU ITEMS -->
         <section id="menuItemsSection">
             <h2>Please pick 3 menu items</h2>
-            <!-- <div id="filterSort">
-                <button id="filter">Filter</button>
-                <button id="sort">Sort</button>
-            </div> -->
 
             <table id="menuTableHeader">
                 <thead>
@@ -65,7 +64,7 @@
     <!-- SECTION 2e: SUBMIT BUTTON -->
     <div id="submitDiv">
         <button id="submit">Suggest your menu</button>
-        <p id="newPrompt">click here to get a new prompt</p>
+        <button id="newPrompt">Next prompt  ➜</button>
     </div>
 
     <!-- SECTION 2f: RESULTS -->
