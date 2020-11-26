@@ -267,6 +267,24 @@ function makeSubmitButtonDisappear() {submitBtn.style.display = "none"}
 function makeNewPromptButtonAppear() {newPromptBtn.style.display = "block"}
 function makeNewPromptButtonDisppear() {newPromptBtn.style.display = "none"}
 
+function submitButtonTimeout() {
+    setTimeout(() => {
+        resetPrompt()
+    }, 3000)
+}
+
+function resetPrompt() {
+    printPrompt(allPrompts);
+    htmlAllMenuItems = allMenuItems
+    playerChoices = []
+    loadMenuItems(htmlAllMenuItems);
+    renderPlayerChoicesTable(playerChoices)
+    response.textContent = "";
+    hideResponseSection()
+    makeSubmitButtonAppear()
+    makeNewPromptButtonDisppear()
+}
+
 function endGame() {
     if (currentScore <= 5) {
         hidePlayScreen()
@@ -332,19 +350,14 @@ submitBtn.onclick = () => {
         showResponseSection()
         changeScore(isCriteriaFulfilled(selectedPrompt))
         endGame()
+        submitButtonTimeout()
     }
 }
 
 newPromptBtn.onclick = () => {
-    printPrompt(allPrompts);
-    htmlAllMenuItems = allMenuItems
-    playerChoices = []
-    loadMenuItems(htmlAllMenuItems);
-    renderPlayerChoicesTable(playerChoices)
-    response.textContent = "";
-    hideResponseSection()
-    makeSubmitButtonAppear()
-    makeNewPromptButtonDisppear()
+    resetPrompt()
+    clearTimeout(submitButtonTimeout)
+
 }
 
 resetGameLose.onclick = () => {
