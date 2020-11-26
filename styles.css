@@ -162,7 +162,8 @@ table:hover {
     height: 100vh;
     width: 100vw;
 }
-#winScreen img {
+
+#winScreen img, #loseScreen img {
     max-height: 60vh;
 }
 
