@@ -16,7 +16,7 @@
 
 /* SECTION 1: WELCOME SCREEN */
 #welcomeScreen {
-    background-image: url("../images/resto-entrance.jpg");
+    background-image: url("./images/resto-entrance.jpg");
     background-size: cover;
     height: 100vh;
     display: flex; /* toggle between display flex and none to work on this */
@@ -59,7 +59,7 @@ button#start:active, button#submit:active {
 
 /* SECTION 2: PLAY SCREEN */
 #playScreen {
-    background-image: url("../images/obermamma-interior.jpg");
+    background-image: url("./images/obermamma-interior.jpg");
     background-size: cover;
     display: none;
     height: 100vh;
