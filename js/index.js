@@ -268,10 +268,10 @@ function makeNewPromptButtonAppear() {newPromptBtn.style.display = "block"}
 function makeNewPromptButtonDisppear() {newPromptBtn.style.display = "none"}
 
 function endGame() {
-    if (currentScore <= 8) {
+    if (currentScore <= 5) {
         hidePlayScreen()
         loseScreen.style.display = "flex"
-    } else if (currentScore >= 12) {
+    } else if (currentScore >= 15) {
         hidePlayScreen()
         winScreen.style.display = "flex"
     }

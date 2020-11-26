@@ -38,7 +38,7 @@
 }
 #welcomeScreen p {
     color: var(--light-text-color);
-    text-shadow: 1px 1px 30px var(--border-color);
+    text-shadow: 1px 1px 40px var(--border-color);
     font-size: 24px;
     text-align: center;
 }
