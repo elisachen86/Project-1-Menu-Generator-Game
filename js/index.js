@@ -267,10 +267,9 @@ function makeSubmitButtonDisappear() {submitBtn.style.display = "none"}
 function makeNewPromptButtonAppear() {newPromptBtn.style.display = "block"}
 function makeNewPromptButtonDisppear() {newPromptBtn.style.display = "none"}
 
+let timeout
 function submitButtonTimeout() {
-    setTimeout(() => {
-        resetPrompt()
-    }, 3000)
+    timeout = setTimeout(resetPrompt, 3000)
 }
 
 function resetPrompt() {
@@ -356,8 +355,7 @@ submitBtn.onclick = () => {
 
 newPromptBtn.onclick = () => {
     resetPrompt()
-    clearTimeout(submitButtonTimeout)
-
+    clearTimeout(timeout)
 }
 
 resetGameLose.onclick = () => {
