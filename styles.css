@@ -155,38 +155,34 @@ table:hover {
 
 /* SECTION 3: WIN SCREEN */
 #winScreen {
-    background: url("https://media.giphy.com/media/hoKmJa133aQlyW3NhD/giphy.gif");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center center;
     display: none;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     height: 100vh;
+    width: 100vw;
 }
 
 /* SECTION 4: LOSE SCREEN */
 #loseScreen {
-    background: url("https://media.giphy.com/media/xUPGcHtOYF5lXjCauQ/giphy.gif");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center center;
     display: none;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     height: 100vh;
+    width: 100vw;
 }
 
 #winScreen h2, #loseScreen h2 {
     color: var(--button-color);
     text-shadow: 1px 1px 40px var(--light-text-color);
-    margin: 30px 0px;
+    margin: 30px;
 }
 #resetGameWin,
 #resetGameLose {
-    margin: 30px 0px;
+    height: 50px;
+    width: 200px;
+    margin: 30px;
 }
 footer {
     position: relative;
