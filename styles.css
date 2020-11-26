@@ -180,8 +180,8 @@ table:hover {
 }
 
 #winScreen h2, #loseScreen h2 {
-    color: var(--border-color);
-    text-shadow: none;
+    color: var(--button-color);
+    text-shadow: 1px 1px 40px var(--light-text-color);
     margin: 30px 0px;
 }
 #resetGameWin,
