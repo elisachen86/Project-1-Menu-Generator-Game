@@ -1,6 +1,6 @@
 // // // VARIABLES 
-import {allMenuItems} from "../menu-items.js"
-import {allPrompts} from "../questions-answers.js"
+import {allMenuItems} from "./menu-items.js"
+import {allPrompts} from "./questions-answers.js"
 
 const startBtn = document.getElementById("start")
 const welcomeScreen = document.getElementById("welcomeScreen")
