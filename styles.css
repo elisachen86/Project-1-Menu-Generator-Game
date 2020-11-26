@@ -240,6 +240,7 @@ table:hover {
         grid-row: 4 / 5;
         display: flex;
         flex-direction: column;
+        align-items: center;
     }
     #response {
         grid-column: 1 / 6;
