@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles.css">
+    <script type="module" src="../index.js"></script>
+    <script type="module" src="../menu-items.js"></script>
+    <script type="module" src="../questions-answers.js"></script>
+    <title>Menu Generator Game</title>
+</head>
+<body>
+<!-- SECTION 1: WELCOME SCREEN -->
+    <section id="welcomeScreen">
+        <h1>Menu Generator Game</h1>
+        <p>You’re a waiter in a busy restaurant that offers a lot of choices. 
+            Help your customer choose the menu that is best suited for them</p>
+        <button id="start">Start Playing</button>
+        </section>
+
+<!-- SECTION 2: PLAY SCREEN -->
+    <section id="playScreen">
+
+    <!-- SECTION 2a: QUESTION SECTION -->
+    <div id="question">
+        <p id="questionText">placeholder: "Waiter, I'm vegetarian. Can you please suggest a menu?"</p>
+    </div>
+
+    <!-- SECTION 2b: TIMER AND SCORE -->
+    <section id="timerSection">
+        <h2 id="timer">Time:00</h2>
+        <h2>Score:00 </h2>
+    </section>
+
+    <!-- SECTION 2c: MENU ITEMS -->
+        <section id="menuItemsSection">
+            <h2>Please pick 3 menu items</h2>
+            <!-- <div id="filterSort">
+                <button id="filter">Filter</button>
+                <button id="sort">Sort</button>
+            </div> -->
+
+            <table id="menuTableHeader">
+                <thead>
+                    <td class="col1">Item Name <span id="aToZName">&#9660</span></td>
+                    <td class="col2">Type <span id="aToZType">&#9660</span></td>
+                    <td class="col3"> Price <span id="descPrice">&#9660</span></td>
+                </thead>
+            </table>
+            <div id="tableBox">
+                <table id="fullMenuTable">
+                </table>
+            </div>
+        </section>
+
+
+    <!-- SECTION 2d: PLAYER CHOICES -->
+        <section id="playerChoices">
+            <h2>Your Suggested Menu</h2>
+            <table id="playerChoicesTable">
+            </table>
+        </section>
+        <!-- js: these itemes get filled in onclick for now (drag and drop later) -->
+
+    <!-- SECTION 2e: SUBMIT BUTTON -->
+    <div id="submitDiv">
+        <button id="submit">Suggest your menu</button>
+        <p id="newPrompt">click here to get a new prompt</p>
+    </div>
+
+    <!-- SECTION 2f: RESULTS -->
+    <div id="response">
+        <p id="responseText"></p>
+    </div>
+    </section>
+
+</body>
+    </html>
