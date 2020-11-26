@@ -17,6 +17,11 @@ const response = document.getElementById("responseText")
 const newPromptBtn = document.getElementById("newPrompt")
 const timer = document.getElementById("timer")
 const score = document.getElementById("score")
+const winScreen = document.getElementById("winScreen")
+const loseScreen = document.getElementById("loseScreen")
+const resetGameLose = document.getElementById("resetGameLose")
+const resetGameWin = document.getElementById("resetGameWin")
+
 let allDataCells // DOM selector for all data cells in menuItems table
 let allChoiceCells // DOM selector for all data cells in playerChoice table
 let htmlAllMenuItems = allMenuItems
@@ -26,17 +31,12 @@ let currentScore = 10
 
 loadMenuItems(htmlAllMenuItems);
 
-
-
-
 // ********************************************************************************
 // // // FUNCTIONS
 
 //For initializing the game 
-function initWelcomeScreen() {welcomeScreen.style.display = "flex"}
-function initPlayScreen() {
-    playScreen.style.display = "none"
-}
+function showWelcomeScreen() {welcomeScreen.style.display = "flex"}
+function hidePlayScreen() {playScreen.style.display = "none"}
 function resetScore() {
     currentScore = 10;
     score.textContent = `Score: ${currentScore}`
@@ -44,9 +44,7 @@ function resetScore() {
 
 //For moving on to play the game 
 function hideWelcomeScreen() {welcomeScreen.style.display = "none"}
-function showPlayScreen() {
-    playScreen.style.display = "grid"
-}
+function showPlayScreen() {playScreen.style.display = "grid"}
 
 function getRandomInteger(number) {
   return Math.floor(Math.random() * Math.floor(number));
@@ -113,14 +111,13 @@ function addItemToPlayerChoices(clickedElement) {
             if (clickedElement.closest("tr").classList.contains(item.name)) {
                 playerChoices.push(item);
             }})
-        // }
 }
 function removeItemFromMenu(clickedElement) {
     htmlAllMenuItems = htmlAllMenuItems.filter(item => {
         return !(clickedElement.closest("tr").classList.contains(item.name))
     })
 }
-// }
+
 function removeItemFromPlayerChoices(clickedElement) {
     playerChoices = playerChoices.filter(item => {
         return !(clickedElement.closest("tr").classList.contains(item.name))
@@ -270,6 +267,21 @@ function makeSubmitButtonDisappear() {submitBtn.style.display = "none"}
 function makeNewPromptButtonAppear() {newPromptBtn.style.display = "block"}
 function makeNewPromptButtonDisppear() {newPromptBtn.style.display = "none"}
 
+function endGame() {
+    if (currentScore <= 8) {
+        hidePlayScreen()
+        loseScreen.style.display = "flex"
+    } else if (currentScore >= 12) {
+        hidePlayScreen()
+        winScreen.style.display = "flex"
+    }
+}
+
+function hideWinLoseScreens() {
+    loseScreen.style.display = "none"
+    winScreen.style.display = "none"
+}
+
 // shuffle menu items? 
 // filter menu items 
 
@@ -279,8 +291,8 @@ function makeNewPromptButtonDisppear() {newPromptBtn.style.display = "none"}
 
 // INITIALIZE WELCOME SCREEN
 window.onload = () => {
-    initWelcomeScreen();
-    initPlayScreen();
+    showWelcomeScreen();
+    hidePlayScreen();
 }
 
 // MOVE TO PLAY SCREEN
@@ -290,6 +302,8 @@ startBtn.onclick = () => {
     printPrompt(allPrompts); 
     hideResponseSection()
     resetScore()
+    makeSubmitButtonAppear()
+    makeNewPromptButtonDisppear()
 }
 
 sortDownBtnName.onclick = () => {
@@ -317,6 +331,7 @@ submitBtn.onclick = () => {
         printResult(isCriteriaFulfilled(selectedPrompt)) 
         showResponseSection()
         changeScore(isCriteriaFulfilled(selectedPrompt))
+        endGame()
     }
 }
 
@@ -332,3 +347,26 @@ newPromptBtn.onclick = () => {
     makeNewPromptButtonDisppear()
 }
 
+resetGameLose.onclick = () => {
+    htmlAllMenuItems = allMenuItems
+    playerChoices = []
+    response.textContent = "";
+    loadMenuItems(htmlAllMenuItems);
+    renderPlayerChoicesTable(playerChoices)
+
+    hideWinLoseScreens();
+    showWelcomeScreen();
+    hidePlayScreen();
+}
+
+resetGameWin.onclick = () => {
+    htmlAllMenuItems = allMenuItems
+    playerChoices = []
+    response.textContent = "";
+    loadMenuItems(htmlAllMenuItems);
+    renderPlayerChoicesTable(playerChoices)
+
+    hideWinLoseScreens();
+    showWelcomeScreen();
+    hidePlayScreen();
+}
