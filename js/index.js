@@ -285,10 +285,10 @@ function resetPrompt() {
 }
 
 function endGame() {
-    if (currentScore <= 5) {
+    if (currentScore <= 0) {
         hidePlayScreen()
         loseScreen.style.display = "flex"
-    } else if (currentScore >= 15) {
+    } else if (currentScore >= 20) {
         hidePlayScreen()
         winScreen.style.display = "flex"
     }
